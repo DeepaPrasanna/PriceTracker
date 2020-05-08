@@ -2,7 +2,8 @@ let puppeteer = require('puppeteer')
 let $ = require('cheerio')
 let CronJob = require('cron').CronJob;
 var nodemailer = require('nodemailer');
-
+var dotEnv = require('dotenv')
+dotEnv.config();
 
 const URL = "https://www.amazon.in/HP-Pavilion-15-cs3006tx-15-6-inch-i5-1035G1/dp/B081JZTVWZ/"
 
@@ -48,16 +49,18 @@ async function sendNotification(price) {
         service: 'gmail',
         auth: {
             user: 'anneraj73@gmail.com',
-            pass: 'praise123thelord1'
+            pass: process.env.PASSWORD
         }
     });
     const mailOptions = {
         from: '"Deepa "<anneraj73@gmail.com>',
 
-        to: 'biswajeetdas18@gmail.com',
+        to: 'anneraj73@gmail.com',
         subject: 'Price dropped to ' + price,
-        html: `<a href=\" ${URL}\"> This is the link</a>`,
-        text: 'Price dropped to ' + price,
+        // text: "hey check it",
+        html: `<a href=\" ${URL}\"> This is the link</a><p> you might wanna check this!!</p>`
+
+
     };
     transporter.sendMail(mailOptions, function (err, info) {
         if (err)
