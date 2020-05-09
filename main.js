@@ -9,7 +9,12 @@ const URL = "https://www.amazon.in/HP-Pavilion-15-cs3006tx-15-6-inch-i5-1035G1/d
 
 
 async function configureBrowser() {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+        ],
+    });
     const page = browser.newPage();
 
     await (await page).goto(URL, { waitUntil: "networkidle2", timeout: 0 })
