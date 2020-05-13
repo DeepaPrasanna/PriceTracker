@@ -11,8 +11,8 @@ const URL = "https://www.amazon.in/HP-Pavilion-15-cs3006tx-15-6-inch-i5-1035G1/d
 async function configureBrowser() {
     const browser = await puppeteer.launch({
         args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
+            '--no-sandbox'
+
         ],
     });
     const page = browser.newPage();
