@@ -41,7 +41,7 @@ async function checkPrice(page) {
 
 async function start() {
     let page = await configureBrowser();
-    var job = new CronJob('*/15 * * * * *', function () {
+    var job = new CronJob('* * */3 * * *', function () {
         checkPrice(page)
 
     }, null, true, null, null, true);
